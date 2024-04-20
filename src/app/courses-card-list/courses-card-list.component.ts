@@ -4,7 +4,7 @@ import { Course } from '../model/course';
 @Component({
     selector: 'courses-card-list',
     templateUrl: './courses-card-list.component.html',
-    styleUrls: ['./courses-card-list.component.css']
+    styleUrls: ['./courses-card-list.component.css'],
 })
 export class CoursesCardListComponent implements OnInit {
 
