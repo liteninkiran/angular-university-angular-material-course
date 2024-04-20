@@ -105,5 +105,5 @@ $theme: mat.define-light-theme((color: (primary: $primary,
 @include responsive-dialogs();
 
 .highlight-date {
-    background: red;
+    background: red !important;
 }
