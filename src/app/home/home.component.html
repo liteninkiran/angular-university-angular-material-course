@@ -10,4 +10,29 @@
 
     </div>
 
+    <!-- Tab Group -->
+    <mat-tab-group>
+
+        <!-- Beginners Tab -->
+        <mat-tab label="Beginners">
+
+            <!-- Beginner Courses -->
+            <courses-card-list [courses]="beginnerCourses$ | async">
+
+            </courses-card-list>
+
+        </mat-tab>
+
+        <!-- Advanced Tab -->
+        <mat-tab label="Advanced">
+
+            <!-- Advanced Courses -->
+            <courses-card-list [courses]="advancedCourses$ | async">
+
+            </courses-card-list>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
 </div>
