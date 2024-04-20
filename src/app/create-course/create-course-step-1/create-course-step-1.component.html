@@ -1,6 +1,6 @@
 <div [formGroup]="form" class="course-details-form">
 
-    <!-- Title -->
+    <!-- Course Title -->
     <mat-form-field floatLabel="always">
 
         <input
@@ -95,5 +95,17 @@
     <mat-checkbox color="primary" formControlName="downloadsAllowed" [indeterminate]="true">
         Downloads allowed?
     </mat-checkbox>
+
+    <!-- Course Description -->
+    <mat-form-field>
+
+        <textarea
+            matInput
+            placeholder="Description"
+            formControlName="longDescription"
+            rows="4"
+        ></textarea>
+
+    </mat-form-field>
 
 </div>
