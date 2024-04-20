@@ -24,7 +24,7 @@ export class CreateCourseStep1Component {
 
     dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
         const date = cellDate.getDate();
-        return view == 'month' && date == 1 ? 'highlight-date' : '';
+        return view === 'month' && date === 1 ? 'highlight-date' : '';
     }
   
     constructor(private fb: UntypedFormBuilder) {
