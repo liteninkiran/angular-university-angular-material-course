@@ -34,7 +34,7 @@ import { CreateCourseStep1Component } from './create-course/create-course-step-1
 import { CreateCourseStep2Component } from './create-course/create-course-step-2/create-course-step-2.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -96,6 +96,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ],
     providers: [
         CoursesService,
+        { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     ],
     bootstrap: [AppComponent],
 })
