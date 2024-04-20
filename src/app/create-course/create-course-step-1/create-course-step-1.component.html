@@ -22,4 +22,24 @@
 
     </mat-form-field>
 
+    <!-- Course Type -->
+    <mat-radio-group class="course-type" formControlName="courseType">
+
+        <!-- Free -->
+        <mat-radio-button value="free">
+            Free
+        </mat-radio-button>
+
+        <!-- Premium -->
+        <mat-radio-button value="premium">
+            Premium
+        </mat-radio-button>
+
+        <!-- Super Premium -->
+        <mat-radio-button [disabled]="true" value="super-premium">
+            Super Premium
+        </mat-radio-button>
+
+    </mat-radio-group>
+
 </div>
