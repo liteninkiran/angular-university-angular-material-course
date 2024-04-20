@@ -1,6 +1,6 @@
 .course {
     text-align: center;
-    width: 390px;
+    width: 600px;
     margin: 40px auto;
 }
 
@@ -10,9 +10,15 @@
     display: block;
 }
 
+.scrolling-container {}
+
 .description-cell {
     text-align: left;
     margin: 10px auto;
+}
+
+.collapsed-detail {
+    display: none;
 }
 
 .duration-cell {

@@ -10,6 +10,7 @@ import { CoursesService } from '../services/courses.service';
 })
 export class CourseComponent implements OnInit, AfterViewInit {
 
+    public displayedColumns = ['seqNo', 'description', 'duration'];
     public course: Course;
     public lessons = [
         {
