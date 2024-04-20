@@ -33,11 +33,38 @@
 
     </mat-sidenav>
 
-    <!-- Burger Button -->
+    <!-- Toolbar -->
     <mat-toolbar color="primary">
+
+        <!-- Burger Button -->
         <button mat-icon (click)="sidenav.open()">
             <mat-icon>menu</mat-icon>
         </button>
+
+        <!-- Screens Drop-Down Menu -->
+        <a mat-button [matMenuTriggerFor]="dropdown">
+            Screens
+        </a>
+
+        <!-- Screens Drop-Down Menu Items -->
+        <mat-menu #dropdown>
+            <button mat-menu-item routerLink="/">Courses</button>
+            <button mat-menu-item routerLink="/about">About</button>
+        </mat-menu>
+
+        <!-- Register Button -->
+        <a mat-button>
+            <mat-icon>person_add</mat-icon>
+            Register
+        </a>
+
+        <!-- Login Button -->
+        <a mat-button>
+            <mat-icon>account_circle</mat-icon>
+            Login
+        </a>
+
+
     </mat-toolbar>
 
     <router-outlet></router-outlet>
