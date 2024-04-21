@@ -7,6 +7,7 @@ import { catchError, finalize, tap } from 'rxjs/operators';
 import { merge, throwError } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
     selector: 'course',
@@ -15,11 +16,12 @@ import { MatSort } from '@angular/material/sort';
 })
 export class CourseComponent implements OnInit, AfterViewInit {
 
-    public displayedColumns = ['seqNo', 'description', 'duration'];
+    public displayedColumns = ['select', 'seqNo', 'description', 'duration'];
     public course: Course;
     public lessons: Lesson[];
     public loading = false;
     public expandedLesson: Lesson = null;
+    public selection = new SelectionModel<Lesson>(true, []);
 
     @ViewChild(MatPaginator)
     public paginator: MatPaginator;
@@ -73,12 +75,27 @@ export class CourseComponent implements OnInit, AfterViewInit {
         .subscribe();
     }
 
-    public onToggleLesson(lesson:Lesson) {
+    public onToggleLesson(lesson: Lesson): void {
         if (lesson === this.expandedLesson) {
             this.expandedLesson = null;
         }
         else {
             this.expandedLesson = lesson;
         }
+    }
+
+    public onLessonToggled(lesson: Lesson): void {
+        this.selection.toggle(lesson);
+        console.log(this.selection.selected);
+    }
+
+    public isAllSelected(): boolean {
+        return this.selection.selected?.length == this.lessons?.length;
+    }
+
+    public toggleAll(): void {
+        this.isAllSelected()
+            ? this.selection.clear()
+            : this.selection.select(...this.lessons);
     }
 }
