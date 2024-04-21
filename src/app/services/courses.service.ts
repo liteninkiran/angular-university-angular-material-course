@@ -36,9 +36,9 @@ export class CoursesService {
 
     public findLessons(
         courseId: number,
-        sortOrder = 'asc',
         pageNumber = 0,
         pageSize = 3,
+        sortOrder = 'asc',
         sortColumn = 'seqNo'
     ): Observable<Lesson[]> {
         return this.http.get('/api/lessons', {
