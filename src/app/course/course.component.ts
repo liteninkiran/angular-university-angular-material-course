@@ -19,6 +19,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
     public course: Course;
     public lessons: Lesson[];
     public loading = false;
+    public expandedLesson: Lesson = null;
 
     @ViewChild(MatPaginator)
     public paginator: MatPaginator;
@@ -49,7 +50,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
         this.loading = true;
 
         const pageNumber = this.paginator?.pageIndex ?? 0;
-        const pageSize = this.paginator?.pageSize ?? 3;
+        const pageSize = this.paginator?.pageSize ?? 10;
         const sortOrder = this.sort?.direction ?? 'asc';
         const sortColumn = this.sort?.active ?? 'seqNo';
 
@@ -70,5 +71,14 @@ export class CourseComponent implements OnInit, AfterViewInit {
             finalize(() => this.loading = false)
         )
         .subscribe();
+    }
+
+    public onToggleLesson(lesson:Lesson) {
+        if (lesson === this.expandedLesson) {
+            this.expandedLesson = null;
+        }
+        else {
+            this.expandedLesson = lesson;
+        }
     }
 }
