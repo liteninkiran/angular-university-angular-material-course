@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
 import { Lesson } from '../model/lesson';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
     selector: 'course',
@@ -17,6 +18,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
     public course: Course;
     public lessons: Lesson[];
     public loading = false;
+
+    @ViewChild(MatPaginator)
+    public paginator: MatPaginator;
 
     constructor(
         private route: ActivatedRoute,
@@ -31,12 +35,20 @@ export class CourseComponent implements OnInit, AfterViewInit {
     }
 
     public ngAfterViewInit(): void {
-
+        this.paginator.page.pipe(
+            tap(() => this.loadLessonsPage()),
+        ).subscribe();
     }
 
     public loadLessonsPage(): void {
         this.loading = true;
-        this.coursesService.findLessons(this.course.id, 'asc', 0, 3)
+
+        const sortOrder = 'asc';
+        const pageNumber = this.paginator?.pageIndex ?? 0;
+        const pageSize = this.paginator?.pageSize ?? 3;
+        const sortColumn = 'seqNo';
+
+        this.coursesService.findLessons(this.course.id, sortOrder, pageNumber, pageSize, sortColumn)
             .pipe(
                 tap(lessons => this.lessons = lessons),
                 catchError(err => {
